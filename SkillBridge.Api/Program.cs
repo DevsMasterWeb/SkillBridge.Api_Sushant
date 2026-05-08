@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IJobRespository, JobRepository>();
 
+
+builder.Services.AddDbContext<SkillBridgeDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultCOnnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
